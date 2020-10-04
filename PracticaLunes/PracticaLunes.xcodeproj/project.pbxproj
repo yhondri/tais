@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56D85CA125246593007ECDE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA025246593007ECDE3 /* main.cpp */; };
+		56D85CA125246593007ECDE3 /* main_p1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA025246593007ECDE3 /* main_p1.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -24,8 +24,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5696B844252A27E500550CDC /* prob_1-¿Es un árbol AVL?.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob_1-¿Es un árbol AVL?.pdf"; sourceTree = "<group>"; };
 		56D85C9D25246593007ECDE3 /* PracticaLunes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PracticaLunes; sourceTree = BUILT_PRODUCTS_DIR; };
-		56D85CA025246593007ECDE3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		56D85CA025246593007ECDE3 /* main_p1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p1.cpp; sourceTree = "<group>"; };
 		56D85CA92524686D007ECDE3 /* bintree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bintree.h; sourceTree = "<group>"; };
 		56D85CAE25246A00007ECDE3 /* casos1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,6 +42,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5696B841252A278F00550CDC /* main */ = {
+			isa = PBXGroup;
+			children = (
+				56D85CA025246593007ECDE3 /* main_p1.cpp */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		5696B843252A27CA00550CDC /* enunciado */ = {
+			isa = PBXGroup;
+			children = (
+				5696B844252A27E500550CDC /* prob_1-¿Es un árbol AVL?.pdf */,
+			);
+			path = enunciado;
+			sourceTree = "<group>";
+		};
 		56D85C9425246593007ECDE3 = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +77,8 @@
 		56D85C9F25246593007ECDE3 /* PracticaLunes */ = {
 			isa = PBXGroup;
 			children = (
-				56D85CA025246593007ECDE3 /* main.cpp */,
+				5696B843252A27CA00550CDC /* enunciado */,
+				5696B841252A278F00550CDC /* main */,
 				56D85CB125246A46007ECDE3 /* Casos */,
 				56D85CAF25246A3D007ECDE3 /* TAD */,
 			);
@@ -139,7 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56D85CA125246593007ECDE3 /* main.cpp in Sources */,
+				56D85CA125246593007ECDE3 /* main_p1.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
