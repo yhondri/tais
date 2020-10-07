@@ -17,74 +17,77 @@
 #include <stack>
 #include <stdexcept>
 #include <utility>
-
+#include <stack>
+#include <vector>
+#include <queue>
 
 template <class T, class Comparator = std::less<T>>
 class Set {
 protected:
-   
-   /*
-    Nodo que almacena internamente el elemento (de tipo T),
-    punteros al hijo izquierdo y derecho, que pueden ser
-    nullptr si el hijo es vacÃ­o, y la altura.
-    */
-   struct TreeNode;
-   using Link = TreeNode *;
-   struct TreeNode {
-      T elem;
-      Link iz, dr;
-      int altura;
-      TreeNode(T const& e, Link i = nullptr, Link d = nullptr,
-               int alt = 1) : elem(e), iz(i), dr(d), altura(alt) {}
-   };
-   
-   // puntero a la raÃ­z de la estructura jerÃ¡rquica de nodos
-   Link raiz;
-   
-   // nÃºmero de elementos (cardinal del conjunto)
-   int nelems;
-   
-   // objeto funciÃ³n que compara elementos (orden total estricto)
-   Comparator menor;
-   
+    
+    /*
+     Nodo que almacena internamente el elemento (de tipo T),
+     punteros al hijo izquierdo y derecho, que pueden ser
+     nullptr si el hijo es vacÃ­o, y la altura.
+     */
+    struct TreeNode;
+    using Link = TreeNode *;
+    struct TreeNode {
+        T elem;
+        Link iz, dr;
+        int altura;
+        int tam_i;
+        TreeNode(T const& e, Link i = nullptr, Link d = nullptr,
+                 int alt = 1) : elem(e), iz(i), dr(d), altura(alt), tam_i(1) {}
+    };
+    
+    // puntero a la raÃ­z de la estructura jerÃ¡rquica de nodos
+    Link raiz;
+    
+    // nÃºmero de elementos (cardinal del conjunto)
+    int nelems;
+    
+    // objeto funciÃ³n que compara elementos (orden total estricto)
+    Comparator menor;
+    
 public:
-   
-   // constructor (conjunto vacÃ­o)
-   Set(Comparator c = Comparator()) : raiz(nullptr), nelems(0), menor(c) {}
-   
-   // constructor por copia
-   Set(Set const& other) {
-      copia(other);
-   }
-   
-   // operador de asignaciÃ³n
-   Set & operator=(Set const& that) {
-      if (this != &that) {
-         libera(raiz);
-         copia(that);
-      }
-      return *this;
-   }
-   
-   ~Set() {
-      libera(raiz);
-   };
-   
-   bool insert(T const& e) {
-      return inserta(e, raiz);
-   }
-   
-   bool empty() const {
-      return raiz == nullptr;
-   }
-   
-   int size() const {
-      return nelems;
-   }
-   
-   bool contains(T const& e) const {
-      return pertenece(e, raiz);
-   }
+    
+    // constructor (conjunto vacÃ­o)
+    Set(Comparator c = Comparator()) : raiz(nullptr), nelems(0), menor(c) {}
+    
+    // constructor por copia
+    Set(Set const& other) {
+        copia(other);
+    }
+    
+    // operador de asignaciÃ³n
+    Set & operator=(Set const& that) {
+        if (this != &that) {
+            libera(raiz);
+            copia(that);
+        }
+        return *this;
+    }
+    
+    ~Set() {
+        libera(raiz);
+    };
+    
+    bool insert(T const& e) {
+        return inserta(e, raiz);
+    }
+    
+    bool empty() const {
+        return raiz == nullptr;
+    }
+    
+    int size() const {
+        return nelems;
+    }
+    
+    bool contains(T const& e) const {
+        return pertenece(e, raiz);
+    }
     
     bool erase(T const& e) {
         return borra(e, raiz);
@@ -92,7 +95,7 @@ public:
     
     int minimum() {
         if (raiz == nullptr) {
-           throw std::out_of_range("No hay elemento a consultar");
+            throw std::out_of_range("No hay elemento a consultar");
         }
         return minimum(raiz);
     }
@@ -104,7 +107,93 @@ public:
         return minimum(value->iz);
     }
     
+    // recorridos
+    
+    std::vector<T> preorder() const {
+        std::vector<T> pre;
+        preorder(raiz, pre);
+        return pre;
+    }
+    
+    std::vector<T> inorder() const {
+        std::vector<T> in;
+        inorder(raiz, in);
+        return in;
+    }
+    
+    std::vector<T> postorder() const {
+        std::vector<T> post;
+        postorder(raiz, post);
+        return post;
+    }
+    
+    std::vector<T> levelorder() const {
+        std::vector<T> levels;
+        if (!empty()) {
+            std::queue<Link> pendientes;
+            pendientes.push(raiz);
+            while (!pendientes.empty()) {
+                Link sig = pendientes.front();
+                pendientes.pop();
+                levels.push_back(sig->elem);
+                if (sig->left != nullptr)
+                    pendientes.push(sig->left);
+                if (sig->right != nullptr)
+                    pendientes.push(sig->right);
+            }
+        }
+        return levels;
+    }
+    
+    T const& kesimo(int k) const {
+        if (k > nelems) {
+            throw std::out_of_range("??");
+        }
+        
+        if(k == raiz->tam_i) {
+            return raiz->elem;
+        } else if(raiz->tam_i > k) {
+            return kesimo(k, raiz->iz);
+        } else {
+            return kesimo(k - raiz->tam_i, raiz->dr);
+        }
+    }
+    
+    T const& kesimo(int k, Link a) const {
+        if (k < a->tam_i) {
+            return kesimo(k, a->iz);
+        } else if (k > a->tam_i) {
+            return kesimo(k - a->tam_i, a->dr);
+        } else {
+            return a->elem;
+        }
+    }
+    
 protected:
+    
+    static void preorder(Link a, std::vector<T> & pre) {
+        if (a != nullptr) {
+            pre.push_back(a->elem);
+            preorder(a->iz, pre);
+            preorder(a->dr, pre);
+        }
+    }
+    
+    static void inorder(Link a, std::vector<T> & in) {
+        if (a != nullptr) {
+            inorder(a->iz, in);
+            in.push_back(a->elem);
+            inorder(a->dr, in);
+        }
+    }
+    
+    static void postorder(Link a, std::vector<T> & post) {
+        if (a != nullptr) {
+            postorder(a->left, post);
+            postorder(a->right, post);
+            post.push_back(a->elem);
+        }
+    }
    
    void copia(Set const& other) {
       raiz = copia(other.raiz);
@@ -139,47 +228,69 @@ protected:
          return true;
       }
    }
-   
-   bool inserta(T const& e, Link & a) {
-      bool crece;
-      if (a == nullptr) { // se inserta el nuevo elemento e
-         a = new TreeNode(e);
-         ++nelems;
-         crece = true;
-      } else if (menor(e, a->elem)) {
-         crece = inserta(e, a->iz);
-         if (crece) reequilibraDer(a);
-      } else if (menor(a->elem, e)) {
+    
+    bool inserta(T const& e, Link & a) {
+        bool crece;
+        if (a == nullptr) { // se inserta el nuevo elemento e
+            a = new TreeNode(e);
+            ++nelems;
+            crece = true;
+        } else if (menor(e, a->elem)) { //(e < a)
+            crece = inserta(e, a->iz);
+            if (crece) {
+             reequilibraDer(a);
+         }
+      } else if (menor(a->elem, e)) { //(a < e)
          crece = inserta(e, a->dr);
-         if (crece) reequilibraIzq(a);
-      } else // el elemento e ya estÃ¡ en el Ã¡rbol
+         if (crece) {
+             reequilibraIzq(a);
+         }
+      } else { // el elemento e ya estÃ¡ en el Ã¡rbol
          crece = false;
+      }
       return crece;
    }
-      
-   int altura(Link a) {
-      if (a == nullptr) return 0;
-      else return a->altura;
-   }
+    
+    int altura(Link a) {
+        if (a == nullptr) return 0;
+        else return a->altura;
+    }
    
-   void rotaDer(Link & r2) {
-      Link r1 = r2->iz;
-      r2->iz = r1->dr;
-      r1->dr = r2;
-      r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
-      r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
-      r2 = r1;
-   }
-   
-   void rotaIzq(Link & r1) {
-      Link r2 = r1->dr;
-      r1->dr = r2->iz;
-      r2->iz = r1;
-      r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
-      r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
-      r1 = r2;
-   }
-   
+    void rotaDer(Link & r2) {
+        Link r1 = r2->iz;
+        r2->iz = r1->dr;
+        if(r2->iz != nullptr) {
+            r2->tam_i = r2->iz->tam_i + 1;
+        } else {
+            r2->tam_i = 1;
+        }
+        r1->dr = r2;
+        r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
+        r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
+        r2 = r1;
+    }
+    
+    void rotaIzq(Link & r1) {
+        Link r2 = r1->dr;
+        r1->dr = r2->iz;
+        r2->iz = r1;
+        if(r2->iz != nullptr) {
+            //El valor del tam_i del nuevo hijo_izq + el valor tam_i del hijo derecho del nuevo hijo izq + 1.
+            r2->tam_i = 1;
+            
+            r2->tam_i += r2->iz->tam_i;
+            
+            if(r1->dr != nullptr) {
+                r2->tam_i += r1->dr->tam_i;
+            }
+        } else {
+            r2->tam_i = 1;
+        }
+        r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
+        r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
+        r1 = r2;
+    }
+    
    void rotaIzqDer(Link & r3) {
       rotaIzq(r3->iz);
       rotaDer(r3);
@@ -196,7 +307,9 @@ protected:
             rotaDerIzq(a);
          else rotaIzq(a);
       }
-      else a->altura = std::max(altura(a->iz), altura(a->dr)) + 1;
+      else {
+          a->altura = std::max(altura(a->iz), altura(a->dr)) + 1;
+      }
    }
    
    void reequilibraDer(Link & a) {
@@ -205,7 +318,12 @@ protected:
             rotaIzqDer(a);
          else rotaDer(a);
       }
-      else a->altura = std::max(altura(a->iz), altura(a->dr)) + 1;
+      else {
+          a->altura = std::max(altura(a->iz), altura(a->dr)) + 1;
+          a->tam_i++;  //Simplemente se ha añadido el valor al lado
+                      // izquierdo del nodo y no se ha necesitado
+                     //  reequilibrar el árbol.
+      }
    }
    
    // devuelve y borra el mÃ­nimo del Ã¡rbol con raÃ­z en a
@@ -273,11 +391,7 @@ public:
       bool operator==(const_iterator const& that) const {
          return act == that.act;
       }
-      
-      bool operator!=(const_iterator const& that) const {
-         return !(this->operator==(that));
-      }
-      
+               
    protected:
       friend class Set;
       Link act;

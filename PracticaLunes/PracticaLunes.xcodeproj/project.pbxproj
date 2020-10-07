@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5696B849252A2DEF00550CDC /* main_set_avl_minimum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5696B848252A2DEF00550CDC /* main_set_avl_minimum.cpp */; };
+		563616E5252B032B0045CC69 /* main_p2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 563616E4252B032B0045CC69 /* main_p2.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		563616E4252B032B0045CC69 /* main_p2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p2.cpp; sourceTree = "<group>"; };
+		563616E8252B03690045CC69 /* casos2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos2.txt; sourceTree = "<group>"; };
 		5696B844252A27E500550CDC /* prob_1-¿Es un árbol AVL?.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob_1-¿Es un árbol AVL?.pdf"; sourceTree = "<group>"; };
 		5696B845252A2B8900550CDC /* TreeSet_AVL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeSet_AVL.h; sourceTree = "<group>"; };
 		5696B848252A2DEF00550CDC /* main_set_avl_minimum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_set_avl_minimum.cpp; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				56D85CA025246593007ECDE3 /* main_p1.cpp */,
+				563616E4252B032B0045CC69 /* main_p2.cpp */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				56D85CAE25246A00007ECDE3 /* casos1.txt */,
+				563616E8252B03690045CC69 /* casos2.txt */,
 			);
 			path = Casos;
 			sourceTree = "<group>";
@@ -180,7 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				5696B849252A2DEF00550CDC /* main_set_avl_minimum.cpp in Sources */,
+				563616E5252B032B0045CC69 /* main_p2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
