@@ -190,6 +190,7 @@ protected:
     static void preorder(Link a, std::vector<T> & pre) {
         if (a != nullptr) {
             pre.push_back(a->elem);
+//            std::cout << a->elem << " " << a->tam_i << std::endl;
             preorder(a->iz, pre);
             preorder(a->dr, pre);
         }
@@ -249,18 +250,21 @@ protected:
         bool crece;
         if (a == nullptr) { // se inserta el nuevo elemento e
             a = new TreeNode(e);
+            a->tam_i = 1;
             ++nelems;
             crece = true;
         } else if (menor(e, a->elem)) { //(e < a)
             crece = inserta(e, a->iz);
             if (crece) {
-             reequilibraDer(a);
-         }
-      } else if (menor(a->elem, e)) { //(a < e)
-         crece = inserta(e, a->dr);
-         if (crece) {
-             reequilibraIzq(a);
-         }
+                a->tam_i++;
+                reequilibraDer(a);
+            } else {
+            }
+        } else if (menor(a->elem, e)) { //(a < e)
+            crece = inserta(e, a->dr);
+            if (crece) {
+                reequilibraIzq(a);
+            }
       } else { // el elemento e ya estÃ¡ en el Ã¡rbol
          crece = false;
       }
@@ -275,11 +279,9 @@ protected:
     void rotaDer(Link & r2) {
         Link r1 = r2->iz;
         r2->iz = r1->dr;
-        if(r2->iz != nullptr) {
-            r2->tam_i = r2->iz->tam_i + 1;
-        } else {
-            r2->tam_i = 1;
-        }
+        
+        r2->tam_i -= r1->tam_i;
+        
         r1->dr = r2;
         r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
         r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
@@ -291,13 +293,8 @@ protected:
         r1->dr = r2->iz;
         r2->iz = r1;
         
-        //El valor del tam_i del nuevo hijo_izq + el valor tam_i del hijo derecho del nuevo hijo izq + 1.
-        r2->tam_i = 1 + r2->iz->tam_i;
-            
-        if(r1->dr != nullptr) {
-            r2->tam_i += r1->dr->tam_i;
-        }
-        
+        r2->tam_i += r1->tam_i;
+
         r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
         r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
         r1 = r2;
@@ -332,9 +329,6 @@ protected:
       }
       else {
           a->altura = std::max(altura(a->iz), altura(a->dr)) + 1;
-          a->tam_i++;  //Simplemente se ha añadido el valor al lado
-                      // izquierdo del nodo y no se ha necesitado
-                     //  reequilibrar el árbol.
       }
    }
    
