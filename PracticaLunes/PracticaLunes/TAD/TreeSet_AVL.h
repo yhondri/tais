@@ -36,9 +36,9 @@ protected:
         T elem;
         Link iz, dr;
         int altura;
-        int tam_i;
+        long long tam_i;
         TreeNode(T const& e, Link i = nullptr, Link d = nullptr,
-                 int alt = 1) : elem(e), iz(i), dr(d), altura(alt), tam_i(1) {}
+                 int alt = 1, int tam = 1) : elem(e), iz(i), dr(d), altura(alt), tam_i(tam) {}
     };
     
     // puntero a la raÃ­z de la estructura jerÃ¡rquica de nodos
@@ -145,7 +145,7 @@ public:
         return levels;
     }
     
-    T const& kesimo(int k) const {
+    T const& kesimo(long long k) const {
         if (k > nelems) {
             throw std::out_of_range("??");
         }
@@ -153,17 +153,33 @@ public:
         if(k == raiz->tam_i) {
             return raiz->elem;
         } else if(raiz->tam_i > k) {
-            return kesimo(k, raiz->iz);
+            if (raiz->iz != nullptr) {
+                return kesimo(k, raiz->iz);
+            } else {
+                throw std::out_of_range("??");
+            }
         } else {
-            return kesimo(k - raiz->tam_i, raiz->dr);
+            if (raiz->dr != nullptr) {
+                return kesimo(k - raiz->tam_i, raiz->dr);
+            } else {
+                throw std::out_of_range("??");
+            }
         }
     }
     
-    T const& kesimo(int k, Link a) const {
+    T const& kesimo(long long k, Link a) const {
         if (k < a->tam_i) {
-            return kesimo(k, a->iz);
+            if (a->iz != nullptr) {
+                return kesimo(k, a->iz);
+            } else {
+                return a->elem;
+            }
         } else if (k > a->tam_i) {
-            return kesimo(k - a->tam_i, a->dr);
+            if (a->dr != nullptr) {
+                return kesimo(k - a->tam_i, a->dr);
+            } else {
+                return a->elem;
+            }
         } else {
             return a->elem;
         }
@@ -255,7 +271,7 @@ protected:
         if (a == nullptr) return 0;
         else return a->altura;
     }
-   
+
     void rotaDer(Link & r2) {
         Link r1 = r2->iz;
         r2->iz = r1->dr;
@@ -274,18 +290,14 @@ protected:
         Link r2 = r1->dr;
         r1->dr = r2->iz;
         r2->iz = r1;
-        if(r2->iz != nullptr) {
-            //El valor del tam_i del nuevo hijo_izq + el valor tam_i del hijo derecho del nuevo hijo izq + 1.
-            r2->tam_i = 1;
+        
+        //El valor del tam_i del nuevo hijo_izq + el valor tam_i del hijo derecho del nuevo hijo izq + 1.
+        r2->tam_i = 1 + r2->iz->tam_i;
             
-            r2->tam_i += r2->iz->tam_i;
-            
-            if(r1->dr != nullptr) {
-                r2->tam_i += r1->dr->tam_i;
-            }
-        } else {
-            r2->tam_i = 1;
+        if(r1->dr != nullptr) {
+            r2->tam_i += r1->dr->tam_i;
         }
+        
         r1->altura = std::max(altura(r1->iz), altura(r1->dr)) + 1;
         r2->altura = std::max(altura(r2->iz), altura(r2->dr)) + 1;
         r1 = r2;

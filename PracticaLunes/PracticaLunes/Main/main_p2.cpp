@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
         int numConsultas = 0;
         cin >> numConsultas;
         while (numConsultas > 0) {
-            int kValue;
+            long long kValue;
             cin >> kValue;
             try {
                 cout << treeSet.kesimo(kValue) << endl;
