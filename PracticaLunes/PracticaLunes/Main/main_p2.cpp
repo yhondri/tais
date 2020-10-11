@@ -29,11 +29,6 @@ int main(int argc, const char * argv[]) {
             treeSet.insert(newValue);
         }
         
-//        cout << endl;
-//        for (auto v : treeSet.preorder()) {
-////            cout << v << " " << endl;
-//        }
-        
         int numConsultas = 0;
         cin >> numConsultas;
         while (numConsultas > 0) {

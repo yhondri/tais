@@ -258,7 +258,6 @@ protected:
             if (crece) {
                 a->tam_i++;
                 reequilibraDer(a);
-            } else {
             }
         } else if (menor(a->elem, e)) { //(a < e)
             crece = inserta(e, a->dr);
