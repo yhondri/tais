@@ -1,0 +1,26 @@
+9
+I Alberto 4000
+I Pepe 3000
+A
+I Rosa 2000
+I Laura 5000
+A
+I Sara 3000
+A
+A
+6
+I Alberto 4000
+I Pepe 5000
+I Juan 1000000
+A
+I ELPEPE 0
+A
+7
+I Alberto 0
+I BBBB 0
+A
+A
+I CCC 0
+I DDD 4
+A
+0
