@@ -47,7 +47,6 @@ public:
     }
 };
 
-
 bool resuelveCaso() {
     int numVertices, numAristas;
     
