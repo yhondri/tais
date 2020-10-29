@@ -27,21 +27,23 @@ private:
 public:
    
    /**
-    * Crea un grafo con V vértices.
+    * Crea un grafo con V vÃ©rtices.
     */
    Grafo(int V) : _V(V), _A(0), _ady(_V) {}
    
    /**
-    * Crea un grafo a partir de los datos en el flujo de entrada.
+    * Crea un grafo a partir de los datos en el flujo de entrada (si puede).
+    * primer es el Ã­ndice del primer vértices del grafo en el entrada.
     */
-   Grafo(std::istream & flujo) : _A(0) {
+   Grafo(std::istream & flujo, int primer = 0) : _A(0) {
       flujo >> _V;
+      if (!flujo) return;
       _ady.resize(_V);
       int E, v, w;
       flujo >> E;
       while (E--) {
          flujo >> v >> w;
-         ponArista(v, w);
+         ponArista(v - primer, w - primer);
       }
    }
    
@@ -81,7 +83,7 @@ public:
     * Muestra el grafo en el stream de salida o (para depurar)
     */
    void print(std::ostream & o = std::cout) const {
-      o << _V << " vérrtices, " << _A << " aristas\n";
+      o << _V << " vértices, " << _A << " aristas\n";
       for (int v = 0; v < _V; ++v) {
          o << v << ": ";
          for (int w : _ady[v]) {
@@ -93,7 +95,7 @@ public:
 };
 
 /**
- * Para mostrar grafos por la salida estándar
+ * Para mostrar grafos por la salida estÃ¡ndar
  */
 inline std::ostream & operator<<(std::ostream & o, Grafo const& g){
    g.print(o);
