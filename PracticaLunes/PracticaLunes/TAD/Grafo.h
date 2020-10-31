@@ -27,7 +27,7 @@ private:
 public:
    
    /**
-    * Crea un grafo con V vÃ©rtices.
+    * Crea un grafo con V vértices.
     */
    Grafo(int V) : _V(V), _A(0), _ady(_V) {}
    

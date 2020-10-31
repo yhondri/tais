@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		563DF740254B268D00335AFD /* main_14.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 563DF73F254B268D00335AFD /* main_14.cpp */; };
+		56917A6E254DD4DB00EE65CA /* main_p15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56917A6D254DD4DB00EE65CA /* main_p15.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,8 @@
 		568914842536DDD6008DB7CB /* PriorityQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PriorityQueue.h; sourceTree = "<group>"; };
 		568914BB25375D09008DB7CB /* main_p7.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p7.cpp; sourceTree = "<group>"; };
 		568914C025375D25008DB7CB /* casos_p7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p7.txt; sourceTree = "<group>"; };
+		56917A6D254DD4DB00EE65CA /* main_p15.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p15.cpp; sourceTree = "<group>"; };
+		56917A71254DD4FC00EE65CA /* casos_p15.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p15.txt; sourceTree = "<group>"; };
 		5696B844252A27E500550CDC /* prob_1-¿Es un árbol AVL?.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "prob_1-¿Es un árbol AVL?.pdf"; sourceTree = "<group>"; };
 		5696B845252A2B8900550CDC /* TreeSet_AVL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeSet_AVL.h; sourceTree = "<group>"; };
 		5696B848252A2DEF00550CDC /* main_set_avl_minimum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_set_avl_minimum.cpp; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				565240202545F073005E8207 /* main_p10.cpp */,
 				5676A23125487913006AAE4B /* main_p11.cpp */,
 				5676A23825488216006AAE4B /* main_p12.cpp */,
+				56917A6D254DD4DB00EE65CA /* main_p15.cpp */,
 			);
 			path = MainOtros;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				5676A23525487929006AAE4B /* casos_p11.txt */,
 				5676A2372548811F006AAE4B /* casos_p12.txt */,
 				563DF743254B26A800335AFD /* casos_p14.txt */,
+				56917A71254DD4FC00EE65CA /* casos_p15.txt */,
 				56831F26253C37BE0045641F /* caso_otros_indexpq.txt */,
 				5696B84F252A2F8C00550CDC /* type1.txt */,
 			);
@@ -237,8 +241,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56917A6E254DD4DB00EE65CA /* main_p15.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				563DF740254B268D00335AFD /* main_14.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
