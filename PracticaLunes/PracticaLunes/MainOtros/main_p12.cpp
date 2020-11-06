@@ -83,7 +83,7 @@ bool resuelveCaso() {
 
 int main(int argc, const char * argv[]) {
 #ifndef DOMJUDGE
-    ifstream in("/Users/yhondri/Documents/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p12.txt");
+    ifstream in("/Users/yhondri/Documents/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p20.txt");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     
