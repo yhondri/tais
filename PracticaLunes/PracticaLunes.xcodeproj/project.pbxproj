@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		563B86FC2555F05200264D22 /* main_p20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 563B86EA2555B4B300264D22 /* main_p20.cpp */; };
+		56A8EAD4255803D000A4277D /* main_p21.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A8EAD3255803D000A4277D /* main_p21.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +64,9 @@
 		5696B845252A2B8900550CDC /* TreeSet_AVL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeSet_AVL.h; sourceTree = "<group>"; };
 		5696B848252A2DEF00550CDC /* main_set_avl_minimum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_set_avl_minimum.cpp; sourceTree = "<group>"; };
 		5696B84F252A2F8C00550CDC /* type1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = type1.txt; sourceTree = "<group>"; };
+		56A8EAD1255803A300A4277D /* GrafoValorado.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrafoValorado.h; sourceTree = "<group>"; };
+		56A8EAD3255803D000A4277D /* main_p21.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p21.cpp; sourceTree = "<group>"; };
+		56A8EAD6255807FD00A4277D /* casos_p21.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p21.txt; sourceTree = "<group>"; };
 		56C2D186254EC1FA005D3744 /* main_p17.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p17.cpp; sourceTree = "<group>"; };
 		56C2D18A254EC225005D3744 /* Digrafo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digrafo.h; sourceTree = "<group>"; };
 		56C2D18B254EC289005D3744 /* casos_p17.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p17.txt; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 				56C2D186254EC1FA005D3744 /* main_p17.cpp */,
 				5655AAF225546A1100DACFFB /* main_p18.cpp */,
 				563B86EA2555B4B300264D22 /* main_p20.cpp */,
+				56A8EAD3255803D000A4277D /* main_p21.cpp */,
 			);
 			path = MainOtros;
 			sourceTree = "<group>";
@@ -177,6 +181,7 @@
 				563B86F52555D17D00264D22 /* ConjuntosDisjuntos.h */,
 				56C2D18A254EC225005D3744 /* Digrafo.h */,
 				5652401F2545F01F005E8207 /* Grafo.h */,
+				56A8EAD1255803A300A4277D /* GrafoValorado.h */,
 				56831F27253C37E30045641F /* IndexPQ.h */,
 				568914842536DDD6008DB7CB /* PriorityQueue.h */,
 				5696B845252A2B8900550CDC /* TreeSet_AVL.h */,
@@ -207,6 +212,7 @@
 				5655AAF0255469C000DACFFB /* casos_p18.txt */,
 				56D268E12552987700166B3C /* casos_p19.txt */,
 				563B86E92555B47100264D22 /* casos_p20.txt */,
+				56A8EAD6255807FD00A4277D /* casos_p21.txt */,
 				56831F26253C37BE0045641F /* caso_otros_indexpq.txt */,
 				5696B84F252A2F8C00550CDC /* type1.txt */,
 			);
@@ -269,8 +275,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A8EAD4255803D000A4277D /* main_p21.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				563B86FC2555F05200264D22 /* main_p20.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
