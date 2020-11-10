@@ -11,7 +11,7 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
-#include <deque>
+#include <queue>
 #include "Digrafo.h"
 
 using namespace std;
@@ -44,32 +44,39 @@ public:
 
 class BuscadorDeSumidero {
 private:
-    std::vector<Sumidero> posiblesSumideros; // anterior[v] = vértice anterior en el camino a v
-    
-    void dfs(Digrafo const& digrafo) {
-        for (int v = 0; v < digrafo.V(); ++v) {
-//            cout << "Value: " << v << " Adyacentes " << (int)digrafo.ady(v).size() << endl;
-            posiblesSumideros[v].setAdyacentes((int)digrafo.ady(v).size());
-            for(auto w : digrafo.ady(v)) {
-                posiblesSumideros[w].annadirEntrada();
-            }
-        }
-    }
-    
+    Digrafo digrafo;
     
 public:
-    BuscadorDeSumidero(Digrafo const& digrafo): posiblesSumideros(digrafo.V(), digrafo.V()) {
-        dfs(digrafo);
-    }
+    BuscadorDeSumidero(Digrafo const& grafo): digrafo(grafo) {}
     
-    int getSumidero() {
-        for (int v = 0; v < posiblesSumideros.size(); ++v) {
-            if (posiblesSumideros[v].esPosibleSumidero()) {
-                return v;
+    void buscarSumidero() {
+        int posibleSumidero = 0;
+        bool encontrado = false;
+        bool posibleSumideroEncontrado = false;
+        
+        for (int v = 0; v < digrafo.V() && !posibleSumideroEncontrado; ++v) {
+            if ((int)digrafo.ady(v).size() == 0) {
+                posibleSumidero = v;
+                posibleSumideroEncontrado = true;
             }
         }
         
-        return -1;
+        int verticesDeEntrada = 0;
+        for (int v = 0; v < digrafo.V() && !encontrado && posibleSumideroEncontrado; ++v) {
+            if (digrafo.hayArista(v, posibleSumidero)) {
+                verticesDeEntrada++;
+                
+                if (verticesDeEntrada == digrafo.V()-1) {
+                    encontrado = true;
+                }
+            }
+        }
+        
+        if (encontrado) {
+            cout << "SI " << posibleSumidero;
+        } else {
+            cout << "NO";
+        }
     }
 };
 
@@ -80,14 +87,8 @@ bool resuelveCaso() {
         return false;
     }
     
-    BuscadorDeSumidero ordenadorDeTareas(tareas);
-    
-    int sumidero = ordenadorDeTareas.getSumidero();
-    if (sumidero != -1) {
-        cout << "SI " << sumidero;
-    } else {
-        cout << "NO";
-    }
+    BuscadorDeSumidero buscadorDeSumidero(tareas);
+    buscadorDeSumidero.buscarSumidero();
     
     cout << '\n';
     

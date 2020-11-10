@@ -48,7 +48,7 @@ public:
    }
 
    /**
-    * Devuelve el nÃºmero de vértices del grafo.
+    * Devuelve el número de vértices del grafo.
     */
    int V() const { return _V; }
    
@@ -58,7 +58,7 @@ public:
    int A() const { return _A; }
    
    /**
-    * AÃ±ade la arista dirigida v-w al grafo.
+    * Añade la arista dirigida v-w al grafo.
     * @throws domain_error si algún vértice no existe
     */
    void ponArista(int v, int w) {
