@@ -45,6 +45,9 @@ private:
 public:
    IndexPQ(Comparator c = Comparator()) :
        array(1), antes(c) {}
+    
+    IndexPQ(int value, Comparator c = Comparator()) :
+        array(value), antes(c) {}
    
    void push(ID e, T const& p) {
       if (posiciones.count(e))

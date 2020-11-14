@@ -142,6 +142,33 @@ public:
          o << "\n";
       }
    }
+    
+    std::vector<AdysVal<Valor>> getMatrizAdyacencia() {
+        return _ady;
+    }
+
+    /**
+     * Comprueba si hay arista de u a v.
+     */
+    bool hayArista(int u, int v) const {
+        for (auto adyacente : _ady[u]) {
+            if(v == adyacente.otro(u)) {
+                return true;
+            }
+        }
+       return false;
+    }
+    
+    /**
+     * Comprueba si hay arista de u a v.
+     */
+    int getValorDeArista(int u, int v) const {
+       for (auto adyacente : _ady[u])
+           if(v == adyacente.otro(u)) {
+              return adyacente.valor();
+          }
+       return -1;
+    }
    
 private:
    int _V;   // nÃºmero de vÃ©rtices
