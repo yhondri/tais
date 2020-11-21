@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
-		56ECE32D25699F3A0095D6AD /* main_22.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56ECE32C25699F3A0095D6AD /* main_22.cpp */; };
+		56ECE3362569B1680095D6AD /* main_25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56ECE3322569B1390095D6AD /* main_25.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +95,8 @@
 		56ECE326256997F70095D6AD /* main_28.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_28.cpp; sourceTree = "<group>"; };
 		56ECE32C25699F3A0095D6AD /* main_22.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_22.cpp; sourceTree = "<group>"; };
 		56ECE33025699FE80095D6AD /* casos_p22.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p22.txt; sourceTree = "<group>"; };
+		56ECE3322569B1390095D6AD /* main_25.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_25.cpp; sourceTree = "<group>"; };
+		56ECE3392569B1970095D6AD /* casos_p25.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p25.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				56ECE32C25699F3A0095D6AD /* main_22.cpp */,
 				566E3B91255FF879004D99DA /* main_23.cpp */,
 				56A6BF7B25619F9B00B24A5D /* main_24.cpp */,
+				56ECE3322569B1390095D6AD /* main_25.cpp */,
 				561A07382568467F00C56F51 /* main_27.cpp */,
 				56ECE326256997F70095D6AD /* main_28.cpp */,
 			);
@@ -239,6 +242,7 @@
 				56ECE33025699FE80095D6AD /* casos_p22.txt */,
 				566E3B95255FF8A3004D99DA /* casos_p23.txt */,
 				56A6BF7F25619FCA00B24A5D /* casos_p24.txt */,
+				56ECE3392569B1970095D6AD /* casos_p25.txt */,
 				56E900C625650BEC0043DC55 /* casos_p26.txt */,
 				561A073C2568486A00C56F51 /* casos_p27.txt */,
 				56ECE325256997C40095D6AD /* casos_p28.txt */,
@@ -306,7 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				56ECE32D25699F3A0095D6AD /* main_22.cpp in Sources */,
+				56ECE3362569B1680095D6AD /* main_25.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
