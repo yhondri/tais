@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		561A07392568467F00C56F51 /* main_27.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 561A07382568467F00C56F51 /* main_27.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
+		56ECE327256997F70095D6AD /* main_28.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56ECE326256997F70095D6AD /* main_28.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +91,8 @@
 		56D85CAE25246A00007ECDE3 /* casos_p1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p1.txt; sourceTree = "<group>"; };
 		56E900C625650BEC0043DC55 /* casos_p26.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p26.txt; sourceTree = "<group>"; };
 		56E900C725650C0A0043DC55 /* main_26.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_26.cpp; sourceTree = "<group>"; };
+		56ECE325256997C40095D6AD /* casos_p28.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p28.txt; sourceTree = "<group>"; };
+		56ECE326256997F70095D6AD /* main_28.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_28.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				566E3B91255FF879004D99DA /* main_23.cpp */,
 				56A6BF7B25619F9B00B24A5D /* main_24.cpp */,
 				561A07382568467F00C56F51 /* main_27.cpp */,
+				56ECE326256997F70095D6AD /* main_28.cpp */,
 			);
 			path = MainOtros;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				56A6BF7F25619FCA00B24A5D /* casos_p24.txt */,
 				56E900C625650BEC0043DC55 /* casos_p26.txt */,
 				561A073C2568486A00C56F51 /* casos_p27.txt */,
+				56ECE325256997C40095D6AD /* casos_p28.txt */,
 				56831F26253C37BE0045641F /* caso_otros_indexpq.txt */,
 				5601A5F0255BD95F002FD7CE /* caso_prim.txt */,
 				5696B84F252A2F8C00550CDC /* type1.txt */,
@@ -267,7 +271,7 @@
 		56D85C9525246593007ECDE3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					56D85C9C25246593007ECDE3 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -298,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				561A07392568467F00C56F51 /* main_27.cpp in Sources */,
+				56ECE327256997F70095D6AD /* main_28.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +423,7 @@
 		56D85CA525246593007ECDE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UY69P266SE;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -429,6 +434,7 @@
 		56D85CA625246593007ECDE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UY69P266SE;
 				ENABLE_HARDENED_RUNTIME = YES;
