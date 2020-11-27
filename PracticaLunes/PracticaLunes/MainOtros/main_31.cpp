@@ -29,14 +29,6 @@ struct EdificioComparator {
     }
 };
 
-struct Tunel {
-    int inicio;
-    int fin;
-    
-public:
-    Tunel(int init = 0, int end = 0): inicio(init), fin(end) {  }
-};
-
 bool pointIsOnLine(Edificio edificio, Tunel tunel) {
     if (edificio.inicio > tunel.fin || tunel.fin <= edificio.inicio) {
         return false;
