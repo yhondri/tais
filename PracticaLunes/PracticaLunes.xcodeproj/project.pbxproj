@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56C5E02D25716D9700F6840A /* main_29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56C5E02C25716D9700F6840A /* main_29.cpp */; };
+		56A7A1B62576ABDB0021E8E9 /* main_33.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A7A1B52576ABDB0021E8E9 /* main_33.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +73,8 @@
 		5696B84F252A2F8C00550CDC /* type1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = type1.txt; sourceTree = "<group>"; };
 		56A6BF7B25619F9B00B24A5D /* main_24.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_24.cpp; sourceTree = "<group>"; };
 		56A6BF7F25619FCA00B24A5D /* casos_p24.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p24.txt; sourceTree = "<group>"; };
+		56A7A1B52576ABDB0021E8E9 /* main_33.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_33.cpp; sourceTree = "<group>"; };
+		56A7A1B92576ACAA0021E8E9 /* casos_p33.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p33.txt; sourceTree = "<group>"; };
 		56A8EAD1255803A300A4277D /* GrafoValorado.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrafoValorado.h; sourceTree = "<group>"; };
 		56A8EAD3255803D000A4277D /* main_p21.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p21.cpp; sourceTree = "<group>"; };
 		56A8EAD6255807FD00A4277D /* casos_p21.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p21.txt; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				56917A78254DEBC700EE65CA /* main_p13.cpp */,
 				56C5E02C25716D9700F6840A /* main_29.cpp */,
 				56C5E0322571842300F6840A /* horas.h */,
+				56A7A1B52576ABDB0021E8E9 /* main_33.cpp */,
 			);
 			path = MainLunes;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				56C5E02A2571691B00F6840A /* casos_p30.txt */,
 				56EE8478256D631D00A58ED2 /* casos_p31.txt */,
 				56EE847F256D8FBF00A58ED2 /* casos_p32.txt */,
+				56A7A1B92576ACAA0021E8E9 /* casos_p33.txt */,
 				56831F26253C37BE0045641F /* caso_otros_indexpq.txt */,
 				5601A5F0255BD95F002FD7CE /* caso_prim.txt */,
 				5696B84F252A2F8C00550CDC /* type1.txt */,
@@ -330,7 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
-				56C5E02D25716D9700F6840A /* main_29.cpp in Sources */,
+				56A7A1B62576ABDB0021E8E9 /* main_33.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
