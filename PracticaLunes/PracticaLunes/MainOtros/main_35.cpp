@@ -11,24 +11,10 @@
 #include <fstream>
 #include <algorithm>
 #include <vector>
-#include "EntInf.h"
+//#include "EntInf.h"
 //#include "Matriz.h"
 
 using namespace std;
-
-struct Solucion {
-    long long manerasDeConseguirLaCuerda;
-    long long minNumCordeles;
-    long long minCoste;
-    bool existeSolucion; //Indica si es posible conseguir este valor sumando los otros.
-    
-    Solucion() {
-        this->manerasDeConseguirLaCuerda = 0;
-        this->minNumCordeles = 0;
-        this->minCoste = 1000;
-        this->existeSolucion = false;
-    }
-};
 
 template <typename Object>
 class Matriz {
@@ -66,236 +52,97 @@ private:
 
 template <typename Object>
 inline std::ostream & operator<<(std::ostream & out, Matriz<Object> const& m) {
-   for (int i = 0; i < m.numfils(); ++i) {
-      for (int j = 0; j < m.numcols(); ++j) {
-         out << m[i][j] << ' ';
-      }
-      out << '\n';
-   }
-   return out;
+    for (int i = 0; i < m.numfils(); ++i) {
+        for (int j = 0; j < m.numcols(); ++j) {
+            out << m[i][j] << ' ';
+        }
+        out << '\n';
+    }
+    return out;
 }
 
+
+struct Solucion {
+    long long manerasDeConseguirLaCuerda;
+    int minNumCordeles = 2000000000;
+    int minCoste = 2000000000;
+};
 
 struct Cordel {
     int longitud;
     int coste;
 };
 
-class CalculadorNumeroCombinaciones {
-private:
-    int longitudCuerda;
-    vector<Cordel> cordeles;
-    int numValues;
-    Matriz<Solucion> matrizFormasCrearCuerda;
-    int numManeras = 0;
-public:
-    CalculadorNumeroCombinaciones(vector<Cordel> values, int longitudC):
-    longitudCuerda(longitudC),
-    cordeles(values),
-    numValues((int)values.size()),
-    matrizFormasCrearCuerda(numValues, longitudCuerda+1) {
-        Solucion result = isSubsetSumb();
-        vector<int> p;
-//        long long manerasDeConseguirLaCuerda = 0;
-//        long long minNumCordeles = -1;
-//        long long minCoste = -1;
-//        long long minCordelesActual = 0;
-//        long long minCosteActual = 0;
-//        countNumberOfFormToReachSum(numValues-1, longitudCuerda, manerasDeConseguirLaCuerda, minNumCordeles, minCordelesActual, minCoste, minCosteActual);
-//
-        if (result.existeSolucion) {
-            cout << "SI" << " " << result.manerasDeConseguirLaCuerda << " " << result.minNumCordeles << " " << result.minCoste << '\n';
-        } else {
-            cout << "NO" << '\n';
-        }
-        
-//        printDP();
-        
-//        cout << result << endl;
+void getSolucionB(vector<Cordel> const& cordeles, int const& longitudCuerda) {
+    vector<Solucion> solucionVector((int)longitudCuerda+1);
+    solucionVector[0].manerasDeConseguirLaCuerda = 1;
+    solucionVector[0].minCoste = 0;
+    solucionVector[0].minNumCordeles = 0;
+    
+    if (cordeles[0].longitud <= longitudCuerda) {
+        solucionVector[cordeles[0].longitud].manerasDeConseguirLaCuerda = 1;
+        solucionVector[cordeles[0].longitud].minCoste = cordeles[0].coste;
+        solucionVector[cordeles[0].longitud].minNumCordeles = 1;
     }
     
-    void printDP() {
-        for (int i = 0; i < numValues; ++i) {
-            for (int j = 0; j < longitudCuerda+1; j++) {
-                cout << matrizFormasCrearCuerda[i][j].minCoste << " ";
+    for (int i = 1; i < (int)cordeles.size(); ++i) {
+        for (int j = longitudCuerda; j > 0; --j) {
+            if (cordeles[i].longitud <= j) {
+                solucionVector[j].manerasDeConseguirLaCuerda = solucionVector[j].manerasDeConseguirLaCuerda + solucionVector[j - cordeles[i].longitud].manerasDeConseguirLaCuerda;
+                solucionVector[j].minNumCordeles = min(solucionVector[j].minNumCordeles, solucionVector[j - cordeles[i].longitud].minNumCordeles+1);
+                solucionVector[j].minCoste = min(solucionVector[j].minCoste, solucionVector[j - cordeles[i].longitud].minCoste + cordeles[i].coste);
             }
-            printf("\n");
         }
-
-        printf("-----------\n");
     }
     
-    Solucion isSubsetSumb() {
-        // Si la suma es 0, la respuesta es que sí se puede alcanzar la suma.
-        for (int i = 0; i < numValues; i++) {
-            matrizFormasCrearCuerda[i][0].existeSolucion = true;
-            matrizFormasCrearCuerda[i][0].manerasDeConseguirLaCuerda = 1;
-            matrizFormasCrearCuerda[i][0].minCoste = cordeles[i].coste;
-        }
-                
-        if (cordeles[0].longitud <= longitudCuerda) {
-            matrizFormasCrearCuerda[0][cordeles[0].longitud].existeSolucion = true;
-            matrizFormasCrearCuerda[0][cordeles[0].longitud].manerasDeConseguirLaCuerda = 1;
-            matrizFormasCrearCuerda[0][cordeles[0].longitud].minCoste = cordeles[cordeles[0].longitud].coste;
-        }
-                
-        //Rellenamos la matriz bottom up
-        for (int i = 1; i < numValues; ++i) {
-            for (int j = 0; j < longitudCuerda+1; ++j) {
-                
-                if (cordeles[i].longitud <= j) {
-                    if (matrizFormasCrearCuerda[i - 1][j].existeSolucion) {
-                        matrizFormasCrearCuerda[i][j].existeSolucion = matrizFormasCrearCuerda[i - 1][j].existeSolucion;
-                    } else {
-                        matrizFormasCrearCuerda[i][j].existeSolucion = matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].existeSolucion;
-                    }
-                } else {
-                    matrizFormasCrearCuerda[i][j].existeSolucion = matrizFormasCrearCuerda[i - 1][j].existeSolucion;
-                }
-                
+    Solucion solucion = solucionVector[longitudCuerda];
+    
+    if (solucion.manerasDeConseguirLaCuerda > 0) {
+        cout << "SI " << solucion.manerasDeConseguirLaCuerda << " " << solucion.minNumCordeles << " " << solucion.minCoste << '\n';
+    } else {
+        cout << "NO" << '\n';
+    }
+}
+
+void getSolucion(vector<Cordel> const& cordeles, int const& longitudCuerda) {
+    Matriz<Solucion> matrizFormasCrearCuerda((int)cordeles.size(), longitudCuerda+1);
+    
+    // Si la suma es 0, la respuesta es que sí se puede alcanzar la suma.
+    for (int i = 0; i < (int)cordeles.size(); i++) {
+        matrizFormasCrearCuerda[i][0].manerasDeConseguirLaCuerda = 1;
+        matrizFormasCrearCuerda[i][0].minCoste = 0;
+        matrizFormasCrearCuerda[i][0].minNumCordeles = 0;
+    }
+    
+    if (cordeles[0].longitud <= longitudCuerda) {
+        matrizFormasCrearCuerda[0][cordeles[0].longitud].manerasDeConseguirLaCuerda = 1;
+        matrizFormasCrearCuerda[0][cordeles[0].longitud].minCoste = cordeles[0].coste;
+        matrizFormasCrearCuerda[0][cordeles[0].longitud].minNumCordeles = 1;
+    }
+    
+    //Rellenamos la matriz bottom up
+    for (int i = 1; i < (int)cordeles.size(); ++i) {
+        for (int j = 0; j < longitudCuerda+1; ++j) {
+            if (cordeles[i].longitud <= j) {
                 matrizFormasCrearCuerda[i][j].manerasDeConseguirLaCuerda = matrizFormasCrearCuerda[i - 1][j].manerasDeConseguirLaCuerda + matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].manerasDeConseguirLaCuerda;
                 
-                matrizFormasCrearCuerda[i][j].minNumCordeles = min(matrizFormasCrearCuerda[i - 1][j].minNumCordeles+1, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minNumCordeles+1);
-                
-                
-                matrizFormasCrearCuerda[i][j].minCoste = min(matrizFormasCrearCuerda[i - 1][j].minCoste, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minCoste);
-                
-                matrizFormasCrearCuerda[i][j].minCoste += cordeles[i].coste;
-                //matrizFormasCrearCuerda[i][j].minCoste += costeNuevo;
-                
+                matrizFormasCrearCuerda[i][j].minCoste = min(matrizFormasCrearCuerda[i - 1][j].minCoste, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minCoste + cordeles[i].coste);
+                                    
+                matrizFormasCrearCuerda[i][j].minNumCordeles = min(matrizFormasCrearCuerda[i - 1][j].minNumCordeles, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minNumCordeles+1);
+            } else {
+                matrizFormasCrearCuerda[i][j] = matrizFormasCrearCuerda[i - 1][j];
             }
         }
-
-        return matrizFormasCrearCuerda[numValues-1][longitudCuerda];
     }
-        
-//    void countNumberOfFormToReachSum(int i, int sum,
-//                                     long long& manerasDeConseguirLaCuerda,
-//                                     long long& minNumCordeles,
-//                                     long long& minCordelesActual,
-//                                     long long& minCoste,
-//                                     long long& minCosteActual) {
-//
-//        //Si llegamos al final y la zuma es diferente a 0. Sólo tomamos el resultado si cordeles[0] es igual a sum o si matriz[0][sum] == true
-//        if (i == 0 && sum != 0 && matrizFormasCrearCuerda[0][sum]) {
-//            minCordelesActual++;
-//            minCosteActual += cordeles[i].coste;
-//
-//            if (minNumCordeles == -1) {
-//                minNumCordeles = minCordelesActual;
-//            } else {
-//                minNumCordeles = min(minNumCordeles, minCordelesActual);
-//            }
-//
-//            if (minCoste == -1) {
-//                minCoste = minCosteActual;
-//            } else {
-//                minCoste = min(minCoste, minCosteActual);
-//            }
-//
-//            manerasDeConseguirLaCuerda++;
-//
-//            return;
-//        }
-//
-//        if (i == 0 && sum == 0) {
-//            if (minNumCordeles == -1) {
-//                minNumCordeles = minCordelesActual;
-//            } else {
-//                minNumCordeles = min(minNumCordeles, minCordelesActual);
-//            }
-//
-//            if (minCoste == -1) {
-//                minCoste = minCosteActual;
-//            } else {
-//                minCoste = min(minCoste, minCosteActual);
-//            }
-//
-//            manerasDeConseguirLaCuerda++;
-//            return;
-//        }
-//
-//        // Si podemos llegar al valor objetivo ignorando el valor actual.
-//        if (matrizFormasCrearCuerda[i-1][sum]) {
-//            countNumberOfFormToReachSum(i-1, sum, manerasDeConseguirLaCuerda, minNumCordeles, minCordelesActual, minCoste, minCosteActual);
-//        }
-//
-//        // Si podemos llegar al valor objetivo tomando el valor actual.
-//        if (sum >= cordeles[i].longitud && matrizFormasCrearCuerda[i-1][sum-cordeles[i].longitud]) {
-//            minCordelesActual++;
-//            minCosteActual += cordeles[i].coste;
-//            countNumberOfFormToReachSum(i-1, sum-cordeles[i].longitud, manerasDeConseguirLaCuerda, minNumCordeles, minCordelesActual, minCoste, minCosteActual);
-//        }
-//
-//    }
-};
-
-//class BuscadorCosteMinimo {
-//private:
-//    int n;
-//    Matriz<EntInf> cuerdas;
-//    vector<Cordel> cordeles;
-//    int longitudCuerda;
-//    bool existeSolucion;
-//
-//    EntInf calcularCuerdaMinima() {
-//        cuerdas[0][0] = 0;
-//        for (int i = 1; i <= n; ++i) {
-//            cuerdas[i][0] = 0;
-//            for (int j = 1; j <= longitudCuerda; ++j) {
-//                if (cordeles[i-1].longitud > j) {
-//                    cuerdas[i][j] = cuerdas[i-1][j];
-//                } else {
-//                    cuerdas[i][j] = min(cuerdas[i-1][j], cuerdas[i][j - cordeles[i-1].longitud]+1);
-//                }
-//            }
-//        }
-//        return cuerdas[n][longitudCuerda];
-//    }
-//
-//public:
-//    BuscadorCosteMinimo(vector<Cordel> const& cordelesVector, int longitudC, map<int, int> const& cordelesDisponibles): n((int)cordelesVector.size()),
-//    cuerdas(n+1, longitudC+1, Infinito),
-//    cordeles(cordelesVector),
-//    longitudCuerda(longitudC) {
-//        if (calcularCuerdaMinima() != Infinito) {
-//            existeSolucion = true;
-//        } else {
-//            existeSolucion = false;
-//        }
-//
-//        vector<int> sol = obtenerSolucion(cordelesDisponibles);
-//
-////        cout << cuerdas;
-//    }
-//
-//    bool haySolucion() const {
-//        return existeSolucion;
-//    }
-//
-//    vector<int> obtenerSolucion(map<int, int> cordelesDisponibles) {
-//        vector<int> solucion;
-//        if (cuerdas[n][longitudCuerda] != Infinito) {
-//            int i = n, j = longitudCuerda;
-//            while (j > 0 && existeSolucion) {
-//                //Si hay cordeles disponibles
-//                if (cordeles[i-1].longitud <= j && cuerdas[i][j] != cuerdas[i-1][j]) {
-//                    if (cordelesDisponibles.at(cordeles[i-1].longitud) > 0) {
-//                        solucion.push_back(cordeles[i-1].longitud);
-//                        cordelesDisponibles[cordeles[i-1].longitud]--; //Ya hemos utilizado el corder de esta longitud
-//                        j = j - cordeles[i-1].longitud;
-//                    } else {
-//                        existeSolucion = false;
-//                    }
-//                } else {
-//                    --i;
-//                }
-//            }
-//        }
-//        return solucion;
-//    }
-//};
-
+    
+    Solucion solucion = matrizFormasCrearCuerda[(int)cordeles.size()-1][longitudCuerda];
+    
+    if (solucion.manerasDeConseguirLaCuerda > 0) {
+        cout << "SI " << solucion.manerasDeConseguirLaCuerda << " " << solucion.minNumCordeles << " " << solucion.minCoste << '\n';
+    } else {
+        cout << "NO" << '\n';
+    }
+}
 
 bool resuelveCaso() {
     int numCordeles, longitudCuerda;
@@ -312,32 +159,27 @@ bool resuelveCaso() {
         cordeles.push_back({longitud, coste});
     }
     
-    CalculadorNumeroCombinaciones calculador(cordeles, longitudCuerda);
-    
-//    BuscadorCosteMinimo buscadorCosteMinimo(cordeles, longitudCuerda, cordelesDisponibles);
-//
-//    if (buscadorCosteMinimo.haySolucion()) {
-//        cout << "SI" << '\n';
-//    } else {
-//        cout << "No" << '\n';
-//    }
+//    getSolucion(cordeles, longitudCuerda);
+    getSolucionB  (cordeles, longitudCuerda);
+
+//    CalculadorNumeroCombinaciones calculador(cordeles, longitudCuerda);
     
     return true;
 }
 
 
 int main(int argc, const char * argv[]) {
-#ifndef DOMJUDGE
-    ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p35.txt");
-    auto cinbuf = cin.rdbuf(in.rdbuf());
-#endif
-    
+//#ifndef DOMJUDGE
+//    ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p35.txt");
+//    auto cinbuf = cin.rdbuf(in.rdbuf());
+//#endif
+//
     while (resuelveCaso()) {}
     
     // para dejar todo como estaba al principio
-#ifndef DOMJUDGE
-    cin.rdbuf(cinbuf);
-    //    system("PAUSE");
-#endif
+//#ifndef DOMJUDGE
+//    cin.rdbuf(cinbuf);
+//    //    system("PAUSE");
+//#endif
     return 0;
 }
