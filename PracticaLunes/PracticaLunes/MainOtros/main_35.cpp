@@ -11,56 +11,9 @@
 #include <fstream>
 #include <algorithm>
 #include <vector>
-//#include "EntInf.h"
-//#include "Matriz.h"
+#include "Matriz.h"
 
 using namespace std;
-
-template <typename Object>
-class Matriz {
-public:
-    // crea una matriz con fils filas y cols columnas,
-    // con todas sus celdas inicializadas al valor e
-    Matriz(int fils = 0, int cols = 0, Object e = Object()) : datos(fils, std::vector<Object>(cols, e)) {}
-    
-    // operadores para poder utilizar notaciÃ³n M[i][j]
-    std::vector<Object> const& operator[](int f) const {
-        return datos[f];
-    }
-    std::vector<Object> & operator[](int f) {
-        return datos[f];
-    }
-    
-    // mÃ©todos que lanzan una excepciÃ³n si la posiciÃ³n no existe
-    Object const& at(int f, int c) const {
-        return datos.at(f).at(c);
-    }
-    Object & at(int f, int c) {
-        return datos.at(f).at(c);
-    }
-    
-    int numfils() const { return datos.size(); }
-    int numcols() const { return numfils() > 0 ? datos[0].size() : 0; }
-    
-    bool posCorrecta(int f, int c) const {
-        return 0 <= f && f < numfils() && 0 <= c && c < numcols();
-    }
-    
-private:
-    std::vector<std::vector<Object>> datos;
-};
-
-template <typename Object>
-inline std::ostream & operator<<(std::ostream & out, Matriz<Object> const& m) {
-    for (int i = 0; i < m.numfils(); ++i) {
-        for (int j = 0; j < m.numcols(); ++j) {
-            out << m[i][j] << ' ';
-        }
-        out << '\n';
-    }
-    return out;
-}
-
 
 struct Solucion {
     long long manerasDeConseguirLaCuerda;
@@ -73,6 +26,19 @@ struct Cordel {
     int coste;
 };
 
+/// Esta implementación soluciona el problema con mejora en el espacio utilizado (Antes de mirar esta solución, mira la solución utilizando matriz).
+/// Recursividad:
+/// caso base 1: manerasConseguirCuerda(cordeles, n, cuerda) = false, si sum > 0 && n == 0
+/// caso base 2: manerasConseguirCuerda(cordeles, n, cuerda) = true, si sum  == 0
+/// Por lo tanto para contar todas las posibles maneras de conseguir la cuerda deseada con los córdeles es, por cada cada cordel, contar las posibiliades de incluirlo o no en la construcción de la cuerda.
+/// resultado = manerasConseguirCuerda(cordeles, n-1, cuerda) || manerasConseguirCuerda(cordeles, n-1, cuerda-cordeles[n-1])
+///
+/// Esta versión utiliza programación dinámica, en concreto es una versión mejorada que mejora el espacio en memoria utilizado ya que en vez de utilizar una matriz, utiliza un vector. Esto podemos hacerlo ya que para resolver el caso n, sólo necesitamos el caso n-1, en
+/// términos de matriz, para resolver la fila actual, sólo necesitamos la fila anterior.
+/// Recorremos el vector de derecha a izquierda, porque si lo recorremos de izq-der, estariamos borrando los valores de n-1.
+///
+/// @param cordeles Cordeles disponibles para construir la cuerda.
+/// @param longitudCuerda Longitud de la cuerda que queremos construir.
 void getSolucionB(vector<Cordel> const& cordeles, int const& longitudCuerda) {
     vector<Solucion> solucionVector((int)longitudCuerda+1);
     solucionVector[0].manerasDeConseguirLaCuerda = 1;
@@ -104,45 +70,46 @@ void getSolucionB(vector<Cordel> const& cordeles, int const& longitudCuerda) {
     }
 }
 
-void getSolucion(vector<Cordel> const& cordeles, int const& longitudCuerda) {
-    Matriz<Solucion> matrizFormasCrearCuerda((int)cordeles.size(), longitudCuerda+1);
-    
-    // Si la suma es 0, la respuesta es que sí se puede alcanzar la suma.
-    for (int i = 0; i < (int)cordeles.size(); i++) {
-        matrizFormasCrearCuerda[i][0].manerasDeConseguirLaCuerda = 1;
-        matrizFormasCrearCuerda[i][0].minCoste = 0;
-        matrizFormasCrearCuerda[i][0].minNumCordeles = 0;
-    }
-    
-    if (cordeles[0].longitud <= longitudCuerda) {
-        matrizFormasCrearCuerda[0][cordeles[0].longitud].manerasDeConseguirLaCuerda = 1;
-        matrizFormasCrearCuerda[0][cordeles[0].longitud].minCoste = cordeles[0].coste;
-        matrizFormasCrearCuerda[0][cordeles[0].longitud].minNumCordeles = 1;
-    }
-    
-    //Rellenamos la matriz bottom up
-    for (int i = 1; i < (int)cordeles.size(); ++i) {
-        for (int j = 0; j < longitudCuerda+1; ++j) {
-            if (cordeles[i].longitud <= j) {
-                matrizFormasCrearCuerda[i][j].manerasDeConseguirLaCuerda = matrizFormasCrearCuerda[i - 1][j].manerasDeConseguirLaCuerda + matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].manerasDeConseguirLaCuerda;
-                
-                matrizFormasCrearCuerda[i][j].minCoste = min(matrizFormasCrearCuerda[i - 1][j].minCoste, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minCoste + cordeles[i].coste);
-                                    
-                matrizFormasCrearCuerda[i][j].minNumCordeles = min(matrizFormasCrearCuerda[i - 1][j].minNumCordeles, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minNumCordeles+1);
-            } else {
-                matrizFormasCrearCuerda[i][j] = matrizFormasCrearCuerda[i - 1][j];
-            }
-        }
-    }
-    
-    Solucion solucion = matrizFormasCrearCuerda[(int)cordeles.size()-1][longitudCuerda];
-    
-    if (solucion.manerasDeConseguirLaCuerda > 0) {
-        cout << "SI " << solucion.manerasDeConseguirLaCuerda << " " << solucion.minNumCordeles << " " << solucion.minCoste << '\n';
-    } else {
-        cout << "NO" << '\n';
-    }
-}
+//void getSolucion(vector<Cordel> const& cordeles, int const& longitudCuerda) {
+//    Matriz<Solucion> matrizFormasCrearCuerda((int)cordeles.size(), longitudCuerda+1);
+//
+//    // Si la suma es 0, la respuesta es que sí se puede alcanzar la suma.
+//    for (int i = 0; i < (int)cordeles.size(); i++) {
+//        matrizFormasCrearCuerda[i][0].manerasDeConseguirLaCuerda = 1;
+//        matrizFormasCrearCuerda[i][0].minCoste = 0;
+//        matrizFormasCrearCuerda[i][0].minNumCordeles = 0;
+//    }
+//
+//    if (cordeles[0].longitud <= longitudCuerda) {
+//        matrizFormasCrearCuerda[0][cordeles[0].longitud].manerasDeConseguirLaCuerda = 1;
+//        matrizFormasCrearCuerda[0][cordeles[0].longitud].minCoste = cordeles[0].coste;
+//        matrizFormasCrearCuerda[0][cordeles[0].longitud].minNumCordeles = 1;
+//    }
+//
+//    //Rellenamos la matriz bottom up
+//    for (int i = 1; i < (int)cordeles.size(); ++i) {
+//        for (int j = 0; j < longitudCuerda+1; ++j) {
+//            if (cordeles[i].longitud <= j) {
+//                //Maneras que tengo ahora, más las maneras que tenía antes.
+//                matrizFormasCrearCuerda[i][j].manerasDeConseguirLaCuerda = matrizFormasCrearCuerda[i - 1][j].manerasDeConseguirLaCuerda + matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].manerasDeConseguirLaCuerda;
+//                //número de cordeles necesarios hasta ahora, o número de cordeles necesarios añadiendo esta cuerda + 1.
+//                matrizFormasCrearCuerda[i][j].minNumCordeles = min(matrizFormasCrearCuerda[i - 1][j].minNumCordeles, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minNumCordeles+1);
+//                //Coste mínimo necesario hasta ahora o coste mínimo necesario añadiendo este cordel + el coste del cordel.
+//                matrizFormasCrearCuerda[i][j].minCoste = min(matrizFormasCrearCuerda[i - 1][j].minCoste, matrizFormasCrearCuerda[i - 1][j - cordeles[i].longitud].minCoste + cordeles[i].coste);
+//            } else {
+//                matrizFormasCrearCuerda[i][j] = matrizFormasCrearCuerda[i - 1][j];
+//            }
+//        }
+//    }
+//
+//    Solucion solucion = matrizFormasCrearCuerda[(int)cordeles.size()-1][longitudCuerda];
+//
+//    if (solucion.manerasDeConseguirLaCuerda > 0) {
+//        cout << "SI " << solucion.manerasDeConseguirLaCuerda << " " << solucion.minNumCordeles << " " << solucion.minCoste << '\n';
+//    } else {
+//        cout << "NO" << '\n';
+//    }
+//}
 
 bool resuelveCaso() {
     int numCordeles, longitudCuerda;
@@ -160,7 +127,7 @@ bool resuelveCaso() {
     }
     
 //    getSolucion(cordeles, longitudCuerda);
-    getSolucionB  (cordeles, longitudCuerda);
+    getSolucionB(cordeles, longitudCuerda);
 
 //    CalculadorNumeroCombinaciones calculador(cordeles, longitudCuerda);
     
@@ -169,17 +136,17 @@ bool resuelveCaso() {
 
 
 int main(int argc, const char * argv[]) {
-//#ifndef DOMJUDGE
-//    ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p35.txt");
-//    auto cinbuf = cin.rdbuf(in.rdbuf());
-//#endif
+#ifndef DOMJUDGE
+    ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p35.txt");
+    auto cinbuf = cin.rdbuf(in.rdbuf());
+#endif
 //
     while (resuelveCaso()) {}
     
     // para dejar todo como estaba al principio
-//#ifndef DOMJUDGE
-//    cin.rdbuf(cinbuf);
-//    //    system("PAUSE");
-//#endif
+#ifndef DOMJUDGE
+    cin.rdbuf(cinbuf);
+    //    system("PAUSE");
+#endif
     return 0;
 }
