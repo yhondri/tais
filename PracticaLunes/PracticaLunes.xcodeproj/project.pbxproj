@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		564ED18A258571FF003460B8 /* main_35.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56BC93D7257B86C400640D7C /* main_35.cpp */; };
+		5663C68B25B4329400D7133F /* main_48.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5663C68A25B4329400D7133F /* main_48.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +28,8 @@
 		5601A5F0255BD95F002FD7CE /* caso_prim.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = caso_prim.txt; sourceTree = "<group>"; };
 		561A07382568467F00C56F51 /* main_27.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_27.cpp; sourceTree = "<group>"; };
 		561A073C2568486A00C56F51 /* casos_p27.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p27.txt; sourceTree = "<group>"; };
+		56347FAD25AC4E650054BF58 /* main_46.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_46.cpp; sourceTree = "<group>"; };
+		56347FB125AC4E900054BF58 /* casos_p46.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p46.txt; sourceTree = "<group>"; };
 		563616E4252B032B0045CC69 /* main_p2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p2.cpp; sourceTree = "<group>"; };
 		563616E8252B03690045CC69 /* casos_p2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p2.txt; sourceTree = "<group>"; };
 		563B86E92555B47100264D22 /* casos_p20.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p20.txt; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		56578AA92536080900CB24CC /* casos_p3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p3.txt; sourceTree = "<group>"; };
 		56578AAD253625F900CB24CC /* main_p4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p4.cpp; sourceTree = "<group>"; };
 		56578AB12536262100CB24CC /* casos_p4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p4.txt; sourceTree = "<group>"; };
+		5663C68A25B4329400D7133F /* main_48.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_48.cpp; sourceTree = "<group>"; };
+		5663C68D25B432AE00D7133F /* casos_p48.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p48.txt; sourceTree = "<group>"; };
 		566E3B91255FF879004D99DA /* main_23.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_23.cpp; sourceTree = "<group>"; };
 		566E3B95255FF8A3004D99DA /* casos_p23.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p23.txt; sourceTree = "<group>"; };
 		566E3B96255FF8E4004D99DA /* DigrafoValorado.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DigrafoValorado.h; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 		56A8EAD1255803A300A4277D /* GrafoValorado.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrafoValorado.h; sourceTree = "<group>"; };
 		56A8EAD3255803D000A4277D /* main_p21.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p21.cpp; sourceTree = "<group>"; };
 		56A8EAD6255807FD00A4277D /* casos_p21.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p21.txt; sourceTree = "<group>"; };
+		56AABFD725AEE11600DFFCA4 /* main_47.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_47.cpp; sourceTree = "<group>"; };
+		56AABFDB25AEE17900DFFCA4 /* casos_p47.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p47.txt; sourceTree = "<group>"; };
 		56BC93D7257B86C400640D7C /* main_35.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_35.cpp; sourceTree = "<group>"; };
 		56BC93DB257B872000640D7C /* casos_p35.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p35.txt; sourceTree = "<group>"; };
 		56BC93DC257BB29500640D7C /* EntInf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntInf.h; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 				56EE8475256D62E900A58ED2 /* main_31.cpp */,
 				56EE847B256D86F800A58ED2 /* main_32.cpp */,
 				56BC93D7257B86C400640D7C /* main_35.cpp */,
+				5663C68A25B4329400D7133F /* main_48.cpp */,
 				56EE8481256D91F900A58ED2 /* main_test.cpp */,
 			);
 			path = MainOtros;
@@ -163,6 +170,7 @@
 		5696B841252A278F00550CDC /* MainLunes */ = {
 			isa = PBXGroup;
 			children = (
+				56347FAD25AC4E650054BF58 /* main_46.cpp */,
 				56D85CA025246593007ECDE3 /* main_p1.cpp */,
 				563616E4252B032B0045CC69 /* main_p2.cpp */,
 				56D1A9F3253F2EDA00E9AF0D /* main_p8.cpp */,
@@ -193,6 +201,7 @@
 				56E900C725650C0A0043DC55 /* main_26.cpp */,
 				56C5E026257165C000F6840A /* main_30.cpp */,
 				56A38B50257780CC00DDEB65 /* main_34.cpp */,
+				56AABFD725AEE11600DFFCA4 /* main_47.cpp */,
 			);
 			path = MainMiercoles;
 			sourceTree = "<group>";
@@ -282,6 +291,9 @@
 				56A7A1B92576ACAA0021E8E9 /* casos_p33.txt */,
 				56A38B53257780E500DDEB65 /* casos_p34.txt */,
 				56BC93DB257B872000640D7C /* casos_p35.txt */,
+				56347FB125AC4E900054BF58 /* casos_p46.txt */,
+				56AABFDB25AEE17900DFFCA4 /* casos_p47.txt */,
+				5663C68D25B432AE00D7133F /* casos_p48.txt */,
 				56831F26253C37BE0045641F /* caso_otros_indexpq.txt */,
 				5601A5F0255BD95F002FD7CE /* caso_prim.txt */,
 				5696B84F252A2F8C00550CDC /* type1.txt */,
@@ -345,8 +357,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				564ED18A258571FF003460B8 /* main_35.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
+				5663C68B25B4329400D7133F /* main_48.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
