@@ -36,7 +36,7 @@ int calculoEstimacion(vector<vector<int>> const& tareasFuncionarios, Nodo const&
         int minTareaDisponible = INT_MAX; //De las tareas disponibles, intentaremos coger siempre la mínima del funiconario i.
         
         for (int j = 0; j < (int)tareasFuncionarios.size(); ++j) {
-            if (nodoX.tarea[j] != -1) {
+            if (nodoX.tarea[j] != -1) { //La tarea no está cogida.
                 continue;
             }
             int costeTarea = tareasFuncionarios[i][j];
@@ -51,9 +51,6 @@ int calculoEstimacion(vector<vector<int>> const& tareasFuncionarios, Nodo const&
 
 void costeTrabajo(vector<vector<int>> const& tareasFuncionarios, vector<bool> & mejorSolucion, int& mejorCoste) {
     int numTareas = (int) tareasFuncionarios.size();
-    
-    //Obtenemos la estimación de cada nodo.
-//    vector<int> estimacion = getEstimacion(tareasFuncionarios);
 
     Nodo nodoY;
     nodoY.tarea = vector<int>(numTareas, -1);
@@ -71,11 +68,11 @@ void costeTrabajo(vector<vector<int>> const& tareasFuncionarios, vector<bool> & 
         Nodo nodoX(nodoY);
         ++nodoX.funcionarioIndex; //Seleccionamos la tarea k.
 
-        //Para la tarea k, intentamos ver que funcionario la puede realizar.
-        //Esto viene a ser, para la tarea X0, ¿qué coste conllevaría que la realizara el funcionario 0, 1, .... n?
-        //Conforme bajamos en el árbol, iremos aplicando la poda, como por ejemplo, un funcionario ya seleccionado en una rama, no se puede volver a seleccionar, o que el coste de esta nueva rama es superior que el mejor coste hasta ahora.
+        //Para el funcionario X, intentamos ver que qué tarea puede realizar.
+        //Esto viene a ser, para el funcionario X0, ¿qué coste conllevaría que realizara la tarea 0, 1, .... n?
+        //Conforme bajamos en el árbol, iremos aplicando la poda, como por ejemplo, una tarea ya seleccionada en una rama, no se puede volver a seleccionar, o que el coste de esta nueva rama es superior que el mejor coste hasta ahora.
         for (int i = 0; i < numTareas; i++) {
-            //Restricciones implícitas. Un mismo funcionario no puede realizar varias tareas, por ello necesitamos realizar marcaje de qué funcionario está ya seleccionado.
+            //Restricciones implícitas. Una tarea no puede volver a ser seleccionada, por ello necesitamos realizar marcaje de qué tarea está ya seleccionada.
             if (nodoX.tarea[i] != -1) {
                 continue;
             }
