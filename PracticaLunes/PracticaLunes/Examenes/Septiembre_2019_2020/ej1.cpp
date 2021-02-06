@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-#include <queue>
+#include "PriorityQueue.h"
 
 /*@ <answer>
   
@@ -26,16 +26,12 @@ using namespace std;
 // ================================================================
 //@ <answer>
 
-int calcularNumGorrasNecesarias(queue<int> equiposQue) {
-    if (equiposQue.size() == 1) {
-        return 0;
-    }
-    
-    int acumulador = 0, temporal;
-    while (!equiposQue.empty() && equiposQue.size() > 1) {
-        int equipo1 = equiposQue.front();
+long long calcularNumGorrasNecesarias(PriorityQueue<long long>& equiposQue) {
+    long long acumulador = 0, temporal;
+    while (equiposQue.size() >= 2) {
+        long long equipo1 = equiposQue.top();
         equiposQue.pop();
-        int equipo2 = equiposQue.front();
+        long long equipo2 = equiposQue.top();
         equiposQue.pop();
         temporal = equipo1 + equipo2;
         acumulador += temporal;
@@ -43,7 +39,6 @@ int calcularNumGorrasNecesarias(queue<int> equiposQue) {
     }
     
     return acumulador;
-    
 }
 
 bool resuelveCaso() {
@@ -53,16 +48,16 @@ bool resuelveCaso() {
     cin >> numEquipos;
    if (numEquipos == 0)
       return false;
-   
-    queue<int> equiposQue;
-    int value = 0;
+    
+    PriorityQueue<long long> equiposQue;
+    int value;
     for (int i = 0; i < numEquipos; i++) {
         cin >> value;
         equiposQue.push(value);
     }
     
    // resolver el caso posiblemente llamando a otras funciones
-    int minGorrasNecesarias = calcularNumGorrasNecesarias(equiposQue);
+    long long minGorrasNecesarias = calcularNumGorrasNecesarias(equiposQue);
    
    // escribir la solución
     cout << minGorrasNecesarias << '\n';
@@ -76,7 +71,7 @@ bool resuelveCaso() {
 int main() {
    // ajustes para que cin extraiga directamente de un fichero
 #ifndef DOMJUDGE
-   std::ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/Examenes/ej1.txt");
+   std::ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/Examenes/Septiembre_2019_2020/ej1.txt");
    auto cinbuf = std::cin.rdbuf(in.rdbuf());
 #endif
    
@@ -89,5 +84,6 @@ int main() {
 #endif
    return 0;
 }
+
 
 
