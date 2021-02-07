@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		560D88B425D00854005F4DB8 /* ej2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560D88B325D00854005F4DB8 /* ej2.cpp */; };
+		560D88BB25D01B7B005F4DB8 /* ej3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560D88BA25D01B7B005F4DB8 /* ej3.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +29,8 @@
 		56053AD125C31DE90029BBFB /* main_40.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_40.cpp; sourceTree = "<group>"; };
 		560D88B325D00854005F4DB8 /* ej2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ej2.cpp; sourceTree = "<group>"; };
 		560D88B725D00EDF005F4DB8 /* ej2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ej2.txt; sourceTree = "<group>"; };
+		560D88BA25D01B7B005F4DB8 /* ej3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ej3.cpp; sourceTree = "<group>"; };
+		560D88BD25D01E46005F4DB8 /* ej3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ej3.txt; sourceTree = "<group>"; };
 		5611EEE825C6BFAD0033DB31 /* casos_p40.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p40.txt; sourceTree = "<group>"; };
 		561A07382568467F00C56F51 /* main_27.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_27.cpp; sourceTree = "<group>"; };
 		561A073C2568486A00C56F51 /* casos_p27.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p27.txt; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				5646E00B25CC57F1004171A1 /* ej1.cpp */,
 				560D88B325D00854005F4DB8 /* ej2.cpp */,
+				560D88BA25D01B7B005F4DB8 /* ej3.cpp */,
 			);
 			path = Enero_2019_2020;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			children = (
 				5646E01B25CC698B004171A1 /* ej1.txt */,
 				560D88B725D00EDF005F4DB8 /* ej2.txt */,
+				560D88BD25D01E46005F4DB8 /* ej3.txt */,
 			);
 			path = Enero_2019_2020;
 			sourceTree = "<group>";
@@ -441,7 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				560D88B425D00854005F4DB8 /* ej2.cpp in Sources */,
+				560D88BB25D01B7B005F4DB8 /* ej3.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
