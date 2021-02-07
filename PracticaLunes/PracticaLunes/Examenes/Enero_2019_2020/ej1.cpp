@@ -11,10 +11,14 @@
 using namespace std;
 
 /*@ <answer>
-  
- Escribe aquí un comentario general sobre la solución, explicando cómo
- se resuelve el problema y cuál es el coste de la solución, en función
- del tamaño del problema.
+ 
+ En primer lugar he creado una struct llamada Battery para poder manjear los datos de la batería (id, momento en el que le toca cargarse y la carga máxima que puede obtener tras cada carga).
+Como estructura de datos he utilizado una PriorityQue para poder obtener ordenadas las baterías según la carga restante y el identificador (requisitos del enunciado).
+ 
+ La solución entonces conciste en iterar sobre cada elemento de la cola batteryQueue (que contiene las baterías que se están utilizando en ese momento) y obtener el tiempo de su siguiente carga. En este punto vemos si hemos llegado al T tiempo de verificación, en caso contrario comprobamos si podemos recargar esa batería o en caso contrario si podemos añadir una batería de repuesto.
+ En el momento que hayamos alcanzado el tiempo T o no nos queden más baterías (ya sean iniciales o de repuesto), salimos del bucle y mostramos los resultados en base a las baterías que hayan quedado en la cola.
+ 
+ En el peor de los casos el fin de carga de todas las baterías coincidiría con el T tiempo a consultar, en este caso tendríamos que recorrer toda los elementos de las colas lo que nos daría como resultado un coste O(f(N)) donde N es el número de baterías.
  
  @ </answer> */
 
@@ -37,35 +41,31 @@ bool operator<(Battery const& lhs, Battery const& rhs) {
     return lhs.siguienteCarga < rhs.siguienteCarga;
 }
 
-void resolverProblema(PriorityQueue<Battery> batteryQueue,
-                      PriorityQueue<Battery> batteryRepuestoQueue,
+void resolverProblema(PriorityQueue<Battery>& batteryQueue,
+                      PriorityQueue<Battery>& batteryRepuestoQueue,
                       int const& zPerdidaVidaUtil,
                       int const& tTiempoConsulta,
                       int const& numBateriasNecesariasFuncionamiento) {
     
     Battery battery = batteryQueue.top();
-    
-    for (int i = 0; i <= tTiempoConsulta && !batteryQueue.empty(); i++) {
-        while (battery.siguienteCarga == i && !batteryQueue.empty()) { //Se nos puede quedar la cola vacía.
-            batteryQueue.pop();
-            
-            if ((battery.cargaTotal-zPerdidaVidaUtil) > 0) { //Volvemos a meter
-                battery.cargaTotal -= zPerdidaVidaUtil;
-                battery.siguienteCarga = i+battery.cargaTotal;
-                batteryQueue.push(battery);
-            } else {
-                //Sacamos batería de repuesto si es posible
-                if (!batteryRepuestoQueue.empty()) {
-                    Battery batteryRepuesto = batteryRepuestoQueue.top();
-                    batteryRepuestoQueue.pop();
-                    batteryRepuesto.siguienteCarga += i;
-                    batteryQueue.push(batteryRepuesto);
-                }
-            }
-            
-            if (!batteryQueue.empty()) {
-                battery = batteryQueue.top();
-            }
+    int siguienteTiempo = battery.siguienteCarga;
+    while (siguienteTiempo <= tTiempoConsulta && !batteryQueue.empty()) {
+        batteryQueue.pop();
+        
+        if ((battery.cargaTotal-zPerdidaVidaUtil) > 0) { //Volvemos a meter
+            battery.cargaTotal -= zPerdidaVidaUtil;
+            battery.siguienteCarga = siguienteTiempo + battery.cargaTotal;
+            batteryQueue.push(battery);
+        } else if (!batteryRepuestoQueue.empty()) {
+            Battery batteryRepuesto = batteryRepuestoQueue.top();
+            batteryRepuestoQueue.pop();
+            batteryRepuesto.siguienteCarga += siguienteTiempo;
+            batteryQueue.push(batteryRepuesto);
+        }
+        
+        if (!batteryQueue.empty()) {
+            battery = batteryQueue.top();
+            siguienteTiempo = batteryQueue.top().siguienteCarga;
         }
     }
     
@@ -83,7 +83,7 @@ void resolverProblema(PriorityQueue<Battery> batteryQueue,
         cout << battery.identificador << " " << battery.siguienteCarga << '\n';
     }
     
-    cout << "---\n";
+    cout << "---" << '\n';
 }
 
 bool resuelveCaso() {
@@ -102,14 +102,13 @@ bool resuelveCaso() {
     
     int numBateriasRepuesto;
     cin >> numBateriasRepuesto;
-    int identificadorBateriaRepuestoInicial = numBateriasRepuesto;
     
     PriorityQueue<Battery> batteryRepuestoQueue;
-    int identificador;
+    int identificador = numBateriasNecesariasFuncionamiento + 1;
     for (int i = 1; i <= numBateriasRepuesto; i++) {
         cin >> duracionBateria;
-        identificador = i + identificadorBateriaRepuestoInicial + 1;
         batteryRepuestoQueue.push({identificador, duracionBateria, duracionBateria});
+        identificador += i;
     }
     
     int zPerdidaVidaUtil, tTiempoConsulta;
