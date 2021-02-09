@@ -18,7 +18,7 @@ Como estructura de datos he utilizado una PriorityQue para poder obtener ordenad
  La solución entonces conciste en iterar sobre cada elemento de la cola batteryQueue (que contiene las baterías que se están utilizando en ese momento) y obtener el tiempo de su siguiente carga. En este punto vemos si hemos llegado al T tiempo de verificación, en caso contrario comprobamos si podemos recargar esa batería o en caso contrario si podemos añadir una batería de repuesto.
  En el momento que hayamos alcanzado el tiempo T o no nos queden más baterías (ya sean iniciales o de repuesto), salimos del bucle y mostramos los resultados en base a las baterías que hayan quedado en la cola.
  
- En el peor de los casos el fin de carga de todas las baterías coincidiría con el T tiempo a consultar, en este caso tendríamos que recorrer toda los elementos de las colas lo que nos daría como resultado un coste O(f(N)) donde N es el número de baterías.
+El caso peor sería Z = 1 en este caso tendríamos que recorrer toda los elementos de las colas (habría baterías siempre) lo que nos daría como resultado un coste  O(T log B).
  
  @ </answer> */
 
@@ -59,7 +59,7 @@ void resolverProblema(PriorityQueue<Battery>& batteryQueue,
         } else if (!batteryRepuestoQueue.empty()) {
             Battery batteryRepuesto = batteryRepuestoQueue.top();
             batteryRepuestoQueue.pop();
-            batteryRepuesto.siguienteCarga += siguienteTiempo;
+            batteryRepuesto.siguienteCarga = siguienteTiempo + batteryRepuesto.cargaTotal;
             batteryQueue.push(batteryRepuesto);
         }
         
@@ -95,9 +95,9 @@ bool resuelveCaso() {
        return false;
     
     PriorityQueue<Battery> batteryQueue;
-    for (int i = 0; i < numBateriasNecesariasFuncionamiento; i++) {
+    for (int i = 1; i <= numBateriasNecesariasFuncionamiento; i++) {
         cin >> duracionBateria;
-        batteryQueue.push({i+1, duracionBateria, duracionBateria});
+        batteryQueue.push({i, duracionBateria, duracionBateria});
     }
     
     int numBateriasRepuesto;
@@ -107,7 +107,7 @@ bool resuelveCaso() {
     int identificador = numBateriasNecesariasFuncionamiento + 1;
     for (int i = 1; i <= numBateriasRepuesto; i++) {
         cin >> duracionBateria;
-        batteryRepuestoQueue.push({identificador, duracionBateria, duracionBateria});
+        batteryRepuestoQueue.push({identificador, 0, duracionBateria});
         identificador += i;
     }
     

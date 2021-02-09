@@ -95,7 +95,6 @@ public:
     int distancia() const {
         return distDijkstra[destino].first;
     }
-
     bool iguales() const {
         return distBFS[destino] == aristas;
     }
@@ -135,7 +134,7 @@ bool resuelveCaso() {
 
 int main() {
 #ifndef DOMJUDGE
-    ifstream in("/Users/yhondri/Documents/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p25.txt");
+    ifstream in("/Users/yhondri/Developer/universidad/tais/PracticaLunes/PracticaLunes/Casos/casos_p25.txt");
     auto cinbuf = cin.rdbuf(in.rdbuf());
 #endif
     
