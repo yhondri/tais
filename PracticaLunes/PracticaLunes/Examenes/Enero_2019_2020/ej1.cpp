@@ -110,7 +110,7 @@ bool resuelveCaso() {
     for (int i = 1; i <= numBateriasRepuesto; i++) {
         cin >> duracionBateria;
         batteryRepuestoQueue.push({identificador, duracionBateria, duracionBateria});
-        identificador += i;
+        ++identificador;
     }
     
     int zPerdidaVidaUtil, tTiempoConsulta;
