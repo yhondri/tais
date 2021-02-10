@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56BE155D25D45B1500F3890D /* ej1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5646E00B25CC57F1004171A1 /* ej1.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
-		56DCFCC925D3171200B4D359 /* ej2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56DCFCC825D3171200B4D359 /* ej2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,6 +106,8 @@
 		56BC93DB257B872000640D7C /* casos_p35.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p35.txt; sourceTree = "<group>"; };
 		56BC93DC257BB29500640D7C /* EntInf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntInf.h; sourceTree = "<group>"; };
 		56BC93DD257BB2A900640D7C /* Matriz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matriz.h; sourceTree = "<group>"; };
+		56BE155425D4504400F3890D /* ej1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ej1.cpp; sourceTree = "<group>"; };
+		56BE155A25D4538400F3890D /* casos_p1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p1.txt; sourceTree = "<group>"; };
 		56C2D186254EC1FA005D3744 /* main_p17.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p17.cpp; sourceTree = "<group>"; };
 		56C2D18A254EC225005D3744 /* Digrafo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digrafo.h; sourceTree = "<group>"; };
 		56C2D18B254EC289005D3744 /* casos_p17.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p17.txt; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		5675D8AF25CB106900416D32 /* Examenes */ = {
 			isa = PBXGroup;
 			children = (
+				56BE155325D4502100F3890D /* Julio_2018_2019 */,
 				56DCFCBC25D2F44800B4D359 /* Enero_2018_2019 */,
 				5646E00925CC56B0004171A1 /* Enero_2019_2020 */,
 				5646E00725CC5684004171A1 /* Septiembre_2019_2020 */,
@@ -245,6 +248,7 @@
 		5675D8B025CB107500416D32 /* Examenes */ = {
 			isa = PBXGroup;
 			children = (
+				56BE155925D4536900F3890D /* Julio_2018_2019 */,
 				56DCFCC225D2FFC600B4D359 /* Enero_2018_2019 */,
 				5646E01A25CC6970004171A1 /* Enero_2019_2020 */,
 				5646E01825CC6929004171A1 /* Septiembre_2019_2020 */,
@@ -273,6 +277,22 @@
 				5696B844252A27E500550CDC /* prob_1-¿Es un árbol AVL?.pdf */,
 			);
 			path = Enunciado;
+			sourceTree = "<group>";
+		};
+		56BE155325D4502100F3890D /* Julio_2018_2019 */ = {
+			isa = PBXGroup;
+			children = (
+				56BE155425D4504400F3890D /* ej1.cpp */,
+			);
+			path = Julio_2018_2019;
+			sourceTree = "<group>";
+		};
+		56BE155925D4536900F3890D /* Julio_2018_2019 */ = {
+			isa = PBXGroup;
+			children = (
+				56BE155A25D4538400F3890D /* casos_p1.txt */,
+			);
+			path = Julio_2018_2019;
 			sourceTree = "<group>";
 		};
 		56C608A625384D9D00A0406A /* MainMiercoles */ = {
@@ -465,7 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56DCFCC925D3171200B4D359 /* ej2.cpp in Sources */,
+				56BE155D25D45B1500F3890D /* ej1.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

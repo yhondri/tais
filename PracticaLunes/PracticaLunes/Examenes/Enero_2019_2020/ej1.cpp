@@ -7,7 +7,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <queue>
 #include "PriorityQueue.h"
+
 using namespace std;
 
 /*@ <answer>
@@ -29,9 +31,9 @@ El caso peor sería Z = 1 en este caso tendríamos que recorrer toda los element
 //@ <answer>
 
 struct Battery {
-    int identificador;
-    int siguienteCarga;
-    int cargaTotal; //Vida últil de la batería tras cada carga.
+    long long identificador;
+    long long siguienteCarga;
+    long long cargaTotal; //Vida últil de la batería tras cada carga.
 };
 
 bool operator<(Battery const& lhs, Battery const& rhs) {
@@ -42,13 +44,13 @@ bool operator<(Battery const& lhs, Battery const& rhs) {
 }
 
 void resolverProblema(PriorityQueue<Battery>& batteryQueue,
-                      PriorityQueue<Battery>& batteryRepuestoQueue,
+                      queue<Battery>& batteryRepuestoQueue,
                       int const& zPerdidaVidaUtil,
                       int const& tTiempoConsulta,
                       int const& numBateriasNecesariasFuncionamiento) {
     
     Battery battery = batteryQueue.top();
-    int siguienteTiempo = battery.siguienteCarga;
+    long long siguienteTiempo = battery.siguienteCarga;
     while (siguienteTiempo <= tTiempoConsulta && !batteryQueue.empty()) {
         batteryQueue.pop();
         
@@ -57,9 +59,9 @@ void resolverProblema(PriorityQueue<Battery>& batteryQueue,
             battery.siguienteCarga = siguienteTiempo + battery.cargaTotal;
             batteryQueue.push(battery);
         } else if (!batteryRepuestoQueue.empty()) {
-            Battery batteryRepuesto = batteryRepuestoQueue.top();
+            Battery batteryRepuesto = batteryRepuestoQueue.front();
             batteryRepuestoQueue.pop();
-            batteryRepuesto.siguienteCarga = siguienteTiempo + batteryRepuesto.cargaTotal;
+            batteryRepuesto.siguienteCarga = siguienteTiempo + batteryRepuesto.siguienteCarga;
             batteryQueue.push(batteryRepuesto);
         }
         
@@ -103,11 +105,11 @@ bool resuelveCaso() {
     int numBateriasRepuesto;
     cin >> numBateriasRepuesto;
     
-    PriorityQueue<Battery> batteryRepuestoQueue;
+    queue<Battery> batteryRepuestoQueue;
     int identificador = numBateriasNecesariasFuncionamiento + 1;
     for (int i = 1; i <= numBateriasRepuesto; i++) {
         cin >> duracionBateria;
-        batteryRepuestoQueue.push({identificador, 0, duracionBateria});
+        batteryRepuestoQueue.push({identificador, duracionBateria, duracionBateria});
         identificador += i;
     }
     
