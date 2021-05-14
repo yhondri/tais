@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56BE155D25D45B1500F3890D /* ej1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5646E00B25CC57F1004171A1 /* ej1.cpp */; };
+		56BE156025D4644B00F3890D /* ej3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56BE155F25D4644B00F3890D /* ej3.cpp */; };
 		56D85CAA2524686D007ECDE3 /* bintree.h in Sources */ = {isa = PBXBuildFile; fileRef = 56D85CA92524686D007ECDE3 /* bintree.h */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +108,8 @@
 		56BC93DD257BB2A900640D7C /* Matriz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matriz.h; sourceTree = "<group>"; };
 		56BE155425D4504400F3890D /* ej1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ej1.cpp; sourceTree = "<group>"; };
 		56BE155A25D4538400F3890D /* casos_p1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p1.txt; sourceTree = "<group>"; };
+		56BE155F25D4644B00F3890D /* ej3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ej3.cpp; sourceTree = "<group>"; };
+		56BE156325D4723E00F3890D /* casos_p3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p3.txt; sourceTree = "<group>"; };
 		56C2D186254EC1FA005D3744 /* main_p17.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_p17.cpp; sourceTree = "<group>"; };
 		56C2D18A254EC225005D3744 /* Digrafo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Digrafo.h; sourceTree = "<group>"; };
 		56C2D18B254EC289005D3744 /* casos_p17.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = casos_p17.txt; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				56BE155425D4504400F3890D /* ej1.cpp */,
+				56BE155F25D4644B00F3890D /* ej3.cpp */,
 			);
 			path = Julio_2018_2019;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				56BE155A25D4538400F3890D /* casos_p1.txt */,
+				56BE156325D4723E00F3890D /* casos_p3.txt */,
 			);
 			path = Julio_2018_2019;
 			sourceTree = "<group>";
@@ -485,7 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56BE155D25D45B1500F3890D /* ej1.cpp in Sources */,
+				56BE156025D4644B00F3890D /* ej3.cpp in Sources */,
 				56D85CAA2524686D007ECDE3 /* bintree.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
